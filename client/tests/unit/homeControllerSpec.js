@@ -1,15 +1,28 @@
 describe("Home Controller", function () {
 
-  it("Has a welcome message", function () {
-    var scope = {},
-    controller = new HomeController(scope);
 
+  var scope, controller, $httpBackend;
+
+  beforeEach(inject(function (_$httpBackend_, $rootScope, $controller) {
+    var testShoppingList = [
+      {description: "Item One"},
+      {description: "Item Two"},
+      {description: "Item Three"}
+    ];
+
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET('/query/shoppingList').
+      respond(testShoppingList);
+    scope = $rootScope.$new();
+    controller = $controller(HomeController, {$scope: scope});
+  }));
+
+  it("Has a welcome message", function () {
     expect(scope.message).toBe("Hello World");
   });
 
-  it("Has a shopping list items array", function () {
-    var scope = {},
-    controller = new HomeController(scope);
+  it("Shopping list items array is returned from server query", function () {
+    $httpBackend.flush();
 
     expect(scope.shoppingList.length).toBe(3);
   });

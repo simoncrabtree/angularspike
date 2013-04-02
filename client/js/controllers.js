@@ -2,12 +2,10 @@ function AboutController ($scope) {
   $scope.version = "0.0.1";
 }
 
-function HomeController ($scope) {
+function HomeController ($scope, $http) {
   $scope.message = "Hello World";
 
-  $scope.shoppingList = [
-    {description: "Baked beans"},
-    {description: "Toilet roll"},
-    {description: "Eggs"}
-  ];
+  $http.get('/query/shoppingList').success(function (data) {
+    $scope.shoppingList = data;
+  });
 }
