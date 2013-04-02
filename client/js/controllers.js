@@ -3,7 +3,11 @@ function AboutController ($scope) {
 }
 
 function HomeController ($scope) {
+  $scope.message = "Hello World";
+
   $scope.shoppingList = [
-    {description: "Baked beans"}
+    {description: "Baked beans"},
+    {description: "Toilet roll"},
+    {description: "Eggs"}
   ];
 }
