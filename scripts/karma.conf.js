@@ -7,7 +7,7 @@ files = [
   'client/lib/angular/angular-*.js',
   'client/tests/lib/angular/angular-mocks.js',
   'client/js/**/*.js',
-  'client/tests/**/*.js'
+  'client/tests/unit/**/*.js'
 ];
 
 autoWatch = true;

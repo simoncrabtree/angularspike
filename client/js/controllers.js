@@ -3,5 +3,7 @@ function AboutController ($scope) {
 }
 
 function HomeController ($scope) {
-
+  $scope.shoppingList = [
+    {description: "Baked beans"}
+  ];
 }
