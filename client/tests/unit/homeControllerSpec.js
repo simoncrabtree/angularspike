@@ -19,13 +19,15 @@ describe("Home Controller", function () {
       controller = $controller(HomeController, {$scope: scope});
   }));
 
-  it("Has a welcome message", function () {
+  it("Summary message is returned from server query", function () {
+    expect(scope.summaryMessage).toBeUndefined();
     server.flush();
 
     expect(scope.summaryMessage).toBe("You need to purchase 3 Items");
   });
 
   it("Shopping list items array is returned from server query", function () {
+    expect(scope.shoppingList).toBeUndefined();
     server.flush();
 
     expect(scope.shoppingList.length).toBe(3);
