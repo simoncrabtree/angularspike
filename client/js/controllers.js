@@ -3,9 +3,9 @@ function AboutController ($scope) {
 }
 
 function HomeController ($scope, $http) {
-  $scope.message = "Hello World";
 
   $http.get('/query/shoppingList').success(function (data) {
-    $scope.shoppingList = data;
+    $scope.summaryMessage = data.summaryMessage;
+    $scope.shoppingList = data.shoppingListItems;
   });
 }

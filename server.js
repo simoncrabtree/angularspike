@@ -6,11 +6,14 @@ server.configure(function () {
 });
 
 server.get('/query/shoppingList', function (req, res) {
-    res.json([
-        {description: "Baked beans"},
-        {description: "Toilet roll"},
-        {description: "Eggs"}
-    ]);
+    res.json({
+        summaryMessage: "You need to purchase 3 Items",
+        shoppingListItems: [
+            {description: "Baked beans"},
+            {description: "Toilet roll"},
+            {description: "Eggs"}
+        ]
+    });
 });
 
 server.listen(3000);
