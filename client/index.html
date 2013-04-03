@@ -3,15 +3,24 @@
 <head>
   <meta charset="utf-8">
   <title>AngularJS App</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/home">home</a></li>
-    <li><a href="#/about">about</a></li>
-  </ul>
+  <div class="container">
+  <div class="navbar">
+    <div class="navbar-inner">
+
+      <ul class="nav">
+        <li class="active"><a href="#/home">home</a></li>
+        <li><a href="#/about">about</a></li>
+      </ul>
+    </div>
+  </div>
 
   <div ng-view></div>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
