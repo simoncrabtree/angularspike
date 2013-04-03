@@ -12,6 +12,6 @@ function HomeController ($scope, $http) {
   });
 }
 
-function WidgetsController ($scope) {
+function StyleGuideController ($scope) {
   $scope.username = "Joe Smith";
 }

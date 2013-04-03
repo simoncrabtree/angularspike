@@ -27,7 +27,7 @@ describe("Application", function () {
 
   describe("Greeting widget", function () {
     it("Displays the username", function () {
-      browser().navigateTo('../../index.html#/widgets');
+      browser().navigateTo('../../styleguide.html');
       expect(element('#greeting1').text()).toBe("Hello Joe Smith");
     });
   });
