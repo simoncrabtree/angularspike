@@ -12,6 +12,18 @@ function HomeController ($scope, $http) {
   });
 }
 
-function StyleGuideController ($scope) {
-  $scope.username = "Joe Smith";
+function AddShoppingListItemController ($scope, $http) {
+  $scope.command = {};
+
+  $scope.isUnchanged = function (item) {
+    return !$scope.command.description;
+  }
+
+  $scope.addItem = function () {
+    console.log("Executing command", $scope.command);
+
+    $http.post('/command/addItemToShoppingList', $scope.command);
+    $scope.command = {};
+    window.history.back();
+  }
 }

@@ -3,6 +3,7 @@ var server = express();
 
 server.configure(function () {
     server.use(express.static(__dirname + '/client'));
+    server.use(express.bodyParser());
 });
 
 var shoppingListViewModel = {
@@ -17,6 +18,14 @@ var shoppingListViewModel = {
 
 server.get('/query/shoppingList', function (req, res) {
     res.json(shoppingListViewModel);
+});
+
+server.post('/command/addItemToShoppingList', function (req, res) {
+    var command = req.body;
+    shoppingListViewModel.shoppingListItems.push({
+        description: command.description
+    });
+    res.end('Added item to shopping list');
 });
 
 server.listen(3000);
