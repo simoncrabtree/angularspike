@@ -24,4 +24,11 @@ describe("Application", function () {
       expect(browser().location().url()).toBe('/about');
     });
   });
+
+  describe("Greeting widget", function () {
+    it("Displays the username", function () {
+      browser().navigateTo('../../index.html#/widgets');
+      expect(element('#greeting1').text()).toBe("Hello Joe Smith");
+    });
+  });
 });

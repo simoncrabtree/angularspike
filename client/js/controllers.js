@@ -11,3 +11,7 @@ function HomeController ($scope, $http) {
     $scope.shoppingList = data.shoppingListItems;
   });
 }
+
+function WidgetsController ($scope) {
+  $scope.username = "Joe Smith";
+}
