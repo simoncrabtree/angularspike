@@ -1,10 +1,8 @@
 var express = require('express');
 var server = express();
 
-server.configure(function () {
-    server.use(express.static(__dirname + '/client'));
-    server.use(express.bodyParser());
-});
+server.use(express.static(__dirname + '/client'));
+server.use(express.bodyParser());
 
 var shoppingListViewModel = {
         summaryMessage: "You need to purchase 3 Items",
@@ -14,7 +12,6 @@ var shoppingListViewModel = {
             {description: "Eggs"}
         ]
     };
-
 
 server.get('/query/shoppingList', function (req, res) {
     res.json(shoppingListViewModel);
