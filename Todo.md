@@ -1,0 +1,5 @@
+To Do
+=====
+
+* local data storage (lawnchair?)
+* authentication
