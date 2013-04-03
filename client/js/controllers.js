@@ -4,6 +4,8 @@ function AboutController ($scope) {
 
 function HomeController ($scope, $http) {
 
+  $scope.username = "Simon";
+
   $http.get('/query/shoppingList').success(function (data) {
     $scope.summaryMessage = data.summaryMessage;
     $scope.shoppingList = data.shoppingListItems;
