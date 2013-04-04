@@ -4,13 +4,11 @@ var cupboard = {};
 
 var eventHandlers = {
   'itemAddedToShoppingList': function (data) {
-    console.log("Added Item ToShopping List", data);
     shoppingList[data.id] = {id: data.id, description: data.description};
   },
   'itemPurchased': function (data) {
     cupboard[data.id] = {id: data.id, description: shoppingList[data.id].description, quantity: data.quantity}
     delete shoppingList[data.id];
-    console.log("Cupboard", cupboard);
   }
 }
 
@@ -32,7 +30,6 @@ function HomeController ($scope, $http) {
         eventHandlers[evt.type](evt.data);
       }
       nextEventId++;
-      console.log("Next Event Id now = ", nextEventId);
     });
   });
 }
@@ -51,10 +48,8 @@ function AddShoppingListItemController ($scope, $http) {
     });
 
     $scope.command.uuid = uuid;
-    console.log("Executing command", $scope.command);
 
     $http.post('/command/addItemToShoppingList', $scope.command);
-    $scope.command = {};
     window.history.back();
   }
 }
