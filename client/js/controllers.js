@@ -1,4 +1,4 @@
-
+var nextEventId = 0;
 var shoppingList = {};
 var cupboard = {};
 
@@ -24,13 +24,15 @@ function HomeController ($scope, $http) {
   $scope.shoppingList = shoppingList;
   $scope.cupboard = cupboard;
 
-  $http.get('/events').success(function (events) {
+  $http.get('/events/' + nextEventId).success(function (events) {
     events.forEach(function (evt) {
       if (!eventHandlers[evt.type]) {
         console.warn("Event:", evt.type, " - no event handler has been implemented");
       } else {
         eventHandlers[evt.type](evt.data);
       }
+      nextEventId++;
+      console.log("Next Event Id now = ", nextEventId);
     });
   });
 }

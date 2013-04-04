@@ -23,8 +23,9 @@ server.post('/command/purchaseItem', function (req, res) {
     res.json(evt);
 });
 
-server.get('/events', function (req, res) {
-    res.json(eventstream);
+server.get('/events/:fromEventId', function (req, res) {
+
+    res.json(eventstream.slice(req.params.fromEventId));
 });
 
 server.listen(3000);
