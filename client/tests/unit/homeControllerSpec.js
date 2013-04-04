@@ -17,10 +17,4 @@ describe("Home Controller", function () {
       controller = $controller(HomeController, {$scope: scope});
   }));
 
-  it("Has a hardcoded user name", function () {
-    expect(scope.username).toBe('Simon');
-  });
-
-  it("Event stream is returned from server", function () {
-  });
 });

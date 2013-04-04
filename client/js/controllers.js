@@ -12,29 +12,42 @@ var eventHandlers = {
   }
 }
 
+function generateUUID () {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+    });
+}
+
+function MainController ($scope, $http) {
+  $scope.username = "Simon Crabtree";
+
+  $scope.getEvents = function () {
+    $http.get('/events/' + nextEventId).success(function (events) {
+      events.forEach(function (evt) {
+        if (!eventHandlers[evt.type]) {
+          console.warn("Event:", evt.type, " - no event handler has been implemented");
+        } else {
+          eventHandlers[evt.type](evt.data);
+        }
+        nextEventId++;
+      });
+    });
+  }
+
+  $scope.getEvents();
+}
+
 function AboutController ($scope) {
   $scope.version = "0.0.1";
 }
 
-function HomeController ($scope, $http) {
-
-  $scope.username = "Simon";
+function HomeController ($scope) {
   $scope.shoppingList = shoppingList;
   $scope.shoppingListItemCount = function () {
     return Object.keys(shoppingList).length;
   }
   $scope.cupboard = cupboard;
-
-  $http.get('/events/' + nextEventId).success(function (events) {
-    events.forEach(function (evt) {
-      if (!eventHandlers[evt.type]) {
-        console.warn("Event:", evt.type, " - no event handler has been implemented");
-      } else {
-        eventHandlers[evt.type](evt.data);
-      }
-      nextEventId++;
-    });
-  });
 }
 
 function AddShoppingListItemController ($scope, $http) {
@@ -45,14 +58,11 @@ function AddShoppingListItemController ($scope, $http) {
   }
 
   $scope.addItem = function () {
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
+    $scope.command.uuid = generateUUID();
+
+    $http.post('/command/addItemToShoppingList', $scope.command).success(function () {
+      $scope.getEvents();
     });
-
-    $scope.command.uuid = uuid;
-
-    $http.post('/command/addItemToShoppingList', $scope.command);
     window.history.back();
   }
 }
@@ -62,7 +72,9 @@ function PurchaseItemController ($scope, $http, $routeParams) {
   $scope.description = shoppingList[itemId].description;
 
   $scope.execute = function () {
-    $http.post('/command/purchaseItem', {id: itemId});
+    $http.post('/command/purchaseItem', {id: itemId}).success(function () {
+      $scope.getEvents();
+    });
     window.history.back();
   }
 }

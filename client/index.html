@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body>
+<body ng-controller="MainController">
   <div class="container">
   <div class="navbar">
     <div class="navbar-inner">
@@ -18,6 +18,8 @@
       </ul>
     </div>
   </div>
+
+  <greeting></greeting>
 
   <div ng-view></div>
   </div>
