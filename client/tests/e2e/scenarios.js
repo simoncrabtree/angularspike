@@ -10,11 +10,11 @@ describe("Application", function () {
     });
 
     it("Should display Home Page", function () {
-      expect(element('#message').text()).toBe("You need to purchase 3 Items");
+      expect(element('#message').text()).toBe("You need to purchase 2 items");
     });
 
     it("Displays the shopping list items", function () {
-      expect(repeater('.shopping-list li').count()).toBe(3);
+      expect(repeater('.shopping-list li').count()).toBe(2);
     });
   });
 

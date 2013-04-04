@@ -20,6 +20,9 @@ function HomeController ($scope, $http) {
 
   $scope.username = "Simon";
   $scope.shoppingList = shoppingList;
+  $scope.shoppingListItemCount = function () {
+    return Object.keys(shoppingList).length;
+  }
   $scope.cupboard = cupboard;
 
   $http.get('/events/' + nextEventId).success(function (events) {
