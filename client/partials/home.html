@@ -2,8 +2,12 @@
 <div id="message">{{summaryMessage}}</div>
 
 <ul class="shopping-list">
-  <li ng-repeat="item in shoppingList">{{item.description}}</li>
+  <li ng-repeat="item in shoppingList"><a href="#/purchaseItem/{{item.id}}">{{item.description}}</a></li>
 </ul>
 
 <a href="#/addShoppingListItem">Add Item</a><br />
-<current-time />
+<hr />
+<ul class="store-cupboard">
+  <li ng-repeat="item in cupboard">{{item.description}}</li>
+</ul>
+

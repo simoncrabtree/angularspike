@@ -5,3 +5,4 @@ To Do
 * authentication
 * dialogs
 * commands
+* continuous integration
