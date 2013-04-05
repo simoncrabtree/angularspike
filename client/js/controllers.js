@@ -20,6 +20,17 @@ function generateUUID () {
 }
 
 function MainController ($scope, $http) {
+  $scope.$on('$routeChangeSuccess', function (evt, current, previous) {
+    console.log("RouteChangeSuccess", current.navname);
+    if (current.navname) {
+      $scope.selectedNavBarItem = current.navname;
+    }
+  });
+  $scope.isActive = function (navbarName) {
+    if (navbarName === $scope.selectedNavBarItem) {
+      return 'active';
+    }
+  }
   $scope.username = "Simon Crabtree";
 
   $scope.getEvents = function () {
