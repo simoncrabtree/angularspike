@@ -1,7 +1,7 @@
 var express = require('express');
 var server = express();
 
-server.use(express.static(__dirname + '/client'));
+server.use(express.static(__dirname + '/app'));
 server.use(express.bodyParser());
 
 var eventstream = [
